@@ -1,0 +1,16 @@
+node() {  
+    stage('Build') { 
+        // 构建
+        echo 'test'
+    }
+    stage('Test') { 
+        // 测试
+        echo 'test'
+        sh label: '', script: 'robot --pythonpath BoatLeaf_auto --loglevel DEBUG BoatLeaf_auto/tc'
+    }
+    stage('Deploy') { 
+        // 部署
+        echo 'test'
+        emailext attachmentsPattern: '*.html,*.xml', body: '测试邮件发送', subject: 'pipeline邮件发送', to: '572841638@qq.com'
+    }
+}
